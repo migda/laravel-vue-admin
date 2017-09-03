@@ -11,6 +11,11 @@
                         </router-link>
                     </li>
                     <li>
+                        <router-link :to="{ name: 'countries'}">
+                            <span class="glyphicon glyphicon-globe"></span> Counties
+                        </router-link>
+                    </li>
+                    <li>
                         <router-link :to="{ name: 'users'}">
                             <span class="glyphicon glyphicon-user"></span> Users
                         </router-link>

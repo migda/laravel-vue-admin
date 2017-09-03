@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-use App\Models\User;
+use App\Models\Country;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -11,11 +11,18 @@ class CountriesController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        // todo
+        $countries = Country::query()
+            ->withCount(['users'])
+            ->orderBy('name');
+        if ($request->get('paginate') == 'false') {
+            return response($countries->get());
+        }
+        return response($countries->paginate(10));
     }
 
     /**
@@ -26,7 +33,10 @@ class CountriesController extends Controller
      */
     public function store(Request $request)
     {
-        // todo
+        $country = Country::create([
+            'name' => $request->name,
+        ]);
+        return response($country);
     }
 
     /**
@@ -37,7 +47,8 @@ class CountriesController extends Controller
      */
     public function show($id)
     {
-        // todo
+        $country = Country::findOrFail($id);
+        return response($country);
     }
 
     /**
@@ -49,7 +60,11 @@ class CountriesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // todo
+        $country = Country::findOrFail($id);
+        $country->update([
+            'name' => $request->name,
+        ]);
+        return response($country);
     }
 
     /**

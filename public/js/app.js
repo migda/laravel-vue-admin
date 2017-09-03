@@ -11059,7 +11059,6 @@ var app = new Vue({
 /* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
-
 window._ = __webpack_require__(14);
 
 /**
@@ -11093,7 +11092,9 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 var token = document.head.querySelector('meta[name="csrf-token"]');
 
 if (token) {
-  window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
+  $(document).ready(function () {
+    Vue.http.headers.common['X-CSRF-TOKEN'] = token.content;
+  });
 } else {
   console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
@@ -43545,16 +43546,25 @@ if (typeof window !== 'undefined' && window.Vue) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_router__ = __webpack_require__(42);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_Example_vue__ = __webpack_require__(43);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_Example_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_Example_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__views_users_Index_vue__ = __webpack_require__(46);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__views_users_Index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__views_users_Index_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__views_users_Create_vue__ = __webpack_require__(56);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__views_users_Create_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__views_users_Create_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__views_users_Edit_vue__ = __webpack_require__(64);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__views_users_Edit_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__views_users_Edit_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__views_countries_Index_vue__ = __webpack_require__(81);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__views_countries_Index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__views_countries_Index_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__views_countries_Create_vue__ = __webpack_require__(85);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__views_countries_Create_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__views_countries_Create_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__views_countries_Edit_vue__ = __webpack_require__(90);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__views_countries_Edit_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__views_countries_Edit_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__views_users_Index_vue__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__views_users_Index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__views_users_Index_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__views_users_Create_vue__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__views_users_Create_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__views_users_Create_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__views_users_Edit_vue__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__views_users_Edit_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8__views_users_Edit_vue__);
 
 
 
 // Components
+
+
+
 
 
 
@@ -43572,17 +43582,32 @@ function newRouter() {
                 title: 'Dashboard'
             }
         }, {
-            path: adminUrl + 'users', name: 'users', component: __WEBPACK_IMPORTED_MODULE_3__views_users_Index_vue___default.a,
+            path: adminUrl + 'countries', name: 'countries', component: __WEBPACK_IMPORTED_MODULE_3__views_countries_Index_vue___default.a,
+            meta: {
+                title: 'Countries'
+            }
+        }, {
+            path: adminUrl + 'countries/create', name: 'countries-create', component: __WEBPACK_IMPORTED_MODULE_4__views_countries_Create_vue___default.a,
+            meta: {
+                title: 'Countries - Create'
+            }
+        }, {
+            path: adminUrl + 'countries/:id', name: 'countries-edit', component: __WEBPACK_IMPORTED_MODULE_5__views_countries_Edit_vue___default.a,
+            meta: {
+                title: 'Countries - Edit'
+            }
+        }, {
+            path: adminUrl + 'users', name: 'users', component: __WEBPACK_IMPORTED_MODULE_6__views_users_Index_vue___default.a,
             meta: {
                 title: 'Users'
             }
         }, {
-            path: adminUrl + 'users/create', name: 'users-create', component: __WEBPACK_IMPORTED_MODULE_4__views_users_Create_vue___default.a,
+            path: adminUrl + 'users/create', name: 'users-create', component: __WEBPACK_IMPORTED_MODULE_7__views_users_Create_vue___default.a,
             meta: {
                 title: 'Users - Create'
             }
         }, {
-            path: adminUrl + 'users/:id', name: 'users-edit', component: __WEBPACK_IMPORTED_MODULE_5__views_users_Edit_vue___default.a,
+            path: adminUrl + 'users/:id', name: 'users-edit', component: __WEBPACK_IMPORTED_MODULE_8__views_users_Edit_vue___default.a,
             meta: {
                 title: 'Users - Edit'
             }
@@ -47111,6 +47136,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'sidebar',
@@ -47143,6 +47173,14 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }), _vm._v(" Home\n                    ")])], 1), _vm._v(" "), _c('li', [_c('router-link', {
     attrs: {
       "to": {
+        name: 'countries'
+      }
+    }
+  }, [_c('span', {
+    staticClass: "glyphicon glyphicon-globe"
+  }), _vm._v(" Counties\n                    ")])], 1), _vm._v(" "), _c('li', [_c('router-link', {
+    attrs: {
+      "to": {
         name: 'users'
       }
     }
@@ -47163,6 +47201,612 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 72 */,
+/* 73 */,
+/* 74 */,
+/* 75 */,
+/* 76 */,
+/* 77 */,
+/* 78 */,
+/* 79 */,
+/* 80 */,
+/* 81 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var Component = __webpack_require__(1)(
+  /* script */
+  __webpack_require__(82),
+  /* template */
+  __webpack_require__(83),
+  /* styles */
+  null,
+  /* scopeId */
+  null,
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "D:\\xampp\\htdocs\\___lara\\laravel_vue\\resources\\assets\\js\\views\\countries\\Index.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] Index.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-eb3cbb36", Component.options)
+  } else {
+    hotAPI.reload("data-v-eb3cbb36", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 82 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Crud_Crud__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Crud_Index_vue__ = __webpack_require__(49);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Crud_Index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_Crud_Index_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_Crud_CreateButton_vue__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_Crud_CreateButton_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_Crud_CreateButton_vue__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    mixins: [__WEBPACK_IMPORTED_MODULE_0__components_Crud_Crud__["a" /* default */]],
+    components: {
+        CreateButton: __WEBPACK_IMPORTED_MODULE_2__components_Crud_CreateButton_vue___default.a,
+        CrudIndex: __WEBPACK_IMPORTED_MODULE_1__components_Crud_Index_vue___default.a
+    },
+    data: function data() {
+        return {
+            module: 'countries',
+            columns: [{ id: 0, name: 'ID', width: 5 }, { id: 1, name: 'Name', width: 30 }, { id: 3, name: 'Users', width: 15 }, { id: 4, name: 'Created at', width: 50 }]
+        };
+    },
+    mounted: function mounted() {}
+});
+
+/***/ }),
+/* 83 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "row"
+  }, [_c('div', {
+    staticClass: "col-md-12"
+  }, [_c('div', {
+    staticClass: "panel panel-default"
+  }, [_c('div', {
+    staticClass: "panel-heading"
+  }, [_c('div', {
+    staticClass: "row"
+  }, [_c('div', {
+    staticClass: "col-md-6"
+  }, [_vm._v("\n                        " + _vm._s(_vm.store.title) + "\n                    ")]), _vm._v(" "), _c('div', {
+    staticClass: "col-md-6 text-right"
+  }, [_c('create-button', {
+    attrs: {
+      "name": 'countries-create'
+    }
+  })], 1)])]), _vm._v(" "), _c('div', {
+    staticClass: "panel-body"
+  }, [_c('crud-index', {
+    attrs: {
+      "columns": _vm.columns
+    }
+  }, _vm._l((_vm.items), function(item) {
+    return _c('tr', [_c('td', [_vm._v(_vm._s(item.id))]), _vm._v(" "), _c('td', [_c('router-link', {
+      attrs: {
+        "to": {
+          name: 'countries-edit',
+          params: {
+            id: item.id
+          }
+        }
+      }
+    }, [_vm._v("\n                                " + _vm._s(item.name) + "\n                            ")])], 1), _vm._v(" "), _c('td', [_vm._v(_vm._s(item.users_count))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(item.created_at))])])
+  }))], 1)])])])
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-eb3cbb36", module.exports)
+  }
+}
+
+/***/ }),
+/* 84 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var Component = __webpack_require__(1)(
+  /* script */
+  __webpack_require__(87),
+  /* template */
+  __webpack_require__(88),
+  /* styles */
+  null,
+  /* scopeId */
+  null,
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "D:\\xampp\\htdocs\\___lara\\laravel_vue\\resources\\assets\\js\\views\\countries\\Form.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] Form.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-714e5bfe", Component.options)
+  } else {
+    hotAPI.reload("data-v-714e5bfe", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 85 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var Component = __webpack_require__(1)(
+  /* script */
+  __webpack_require__(86),
+  /* template */
+  __webpack_require__(89),
+  /* styles */
+  null,
+  /* scopeId */
+  null,
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "D:\\xampp\\htdocs\\___lara\\laravel_vue\\resources\\assets\\js\\views\\countries\\Create.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] Create.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-2cf2160e", Component.options)
+  } else {
+    hotAPI.reload("data-v-2cf2160e", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 86 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Form_vue__ = __webpack_require__(84);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Form_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__Form_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Crud_Back_vue__ = __webpack_require__(60);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Crud_Back_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_Crud_Back_vue__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['store'],
+    components: {
+        CrudBack: __WEBPACK_IMPORTED_MODULE_1__components_Crud_Back_vue___default.a,
+        UsersForm: __WEBPACK_IMPORTED_MODULE_0__Form_vue___default.a
+    },
+    data: function data() {
+        return {
+            module: 'countries',
+            item: {}
+        };
+    }
+});
+
+/***/ }),
+/* 87 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    name: 'crud-form',
+    props: ['item', 'store', 'module'],
+    data: function data() {
+        return {};
+    },
+    mounted: function mounted() {},
+
+    methods: {
+        onSubmit: function onSubmit() {
+            if (this.item.id) this.updateItem();else this.createItem();
+        },
+        createItem: function createItem() {
+            var _this = this;
+
+            return new Promise(function (resolve) {
+                _this.$http.post(_this.store.apiUrl + _this.module, _this.item).then(function (response) {
+                    _this.$swal("Added!", response.data.name, "success");
+                    _this.item = {};
+                    resolve();
+                }, function () {
+                    _this.$swal("Something went wrong. Try again!", '', "error");
+                });
+            });
+        },
+        updateItem: function updateItem() {
+            var _this2 = this;
+
+            return new Promise(function (resolve) {
+                _this2.$http.patch(_this2.store.apiUrl + _this2.module + '/' + _this2.item.id + '/', _this2.item).then(function (response) {
+                    _this2.$swal("Edited!", _this2.item.name, "success");
+                    resolve();
+                }, function () {
+                    _this2.$swal("Something went wrong. Try again!", '', "error");
+                });
+            });
+        }
+    }
+});
+
+/***/ }),
+/* 88 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('form', {
+    on: {
+      "submit": function($event) {
+        $event.preventDefault();
+        _vm.onSubmit($event)
+      }
+    }
+  }, [_c('div', {
+    staticClass: "row"
+  }, [_c('div', {
+    staticClass: "col-md-12"
+  }, [_c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    attrs: {
+      "for": "name"
+    }
+  }, [_vm._v("Name:")]), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.item.name),
+      expression: "item.name"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "text",
+      "id": "name",
+      "placeholder": "Name"
+    },
+    domProps: {
+      "value": (_vm.item.name)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.item.name = $event.target.value
+      }
+    }
+  })])])]), _vm._v(" "), _c('div', {
+    staticClass: "row"
+  }, [_c('div', {
+    staticClass: "col-md-12"
+  }, [(_vm.item.id) ? _c('button', {
+    staticClass: "btn btn-primary"
+  }, [_vm._v("Edit")]) : _c('button', {
+    staticClass: "btn btn-success"
+  }, [_vm._v("Create")])])])])
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-714e5bfe", module.exports)
+  }
+}
+
+/***/ }),
+/* 89 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "row"
+  }, [_c('div', {
+    staticClass: "col-md-12"
+  }, [_c('div', {
+    staticClass: "panel panel-default"
+  }, [_c('div', {
+    staticClass: "panel-heading"
+  }, [_c('div', {
+    staticClass: "row"
+  }, [_c('div', {
+    staticClass: "col-md-6"
+  }, [_vm._v("\n                        " + _vm._s(_vm.store.title) + "\n                    ")])])]), _vm._v(" "), _c('div', {
+    staticClass: "panel-body"
+  }, [_c('users-form', {
+    attrs: {
+      "store": _vm.store,
+      "item": _vm.item,
+      "module": _vm.module
+    }
+  })], 1), _vm._v(" "), _c('div', {
+    staticClass: "panel-footer"
+  }, [_c('crud-back', {
+    attrs: {
+      "name": _vm.module
+    }
+  })], 1)])])])
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-2cf2160e", module.exports)
+  }
+}
+
+/***/ }),
+/* 90 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var Component = __webpack_require__(1)(
+  /* script */
+  __webpack_require__(91),
+  /* template */
+  __webpack_require__(92),
+  /* styles */
+  null,
+  /* scopeId */
+  null,
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "D:\\xampp\\htdocs\\___lara\\laravel_vue\\resources\\assets\\js\\views\\countries\\Edit.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] Edit.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-0a9a2047", Component.options)
+  } else {
+    hotAPI.reload("data-v-0a9a2047", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 91 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Crud_Edit__ = __webpack_require__(66);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Form_vue__ = __webpack_require__(84);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Form_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__Form_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_Crud_Back_vue__ = __webpack_require__(60);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_Crud_Back_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_Crud_Back_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_Crud_CreateButton_vue__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_Crud_CreateButton_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_Crud_CreateButton_vue__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    mixins: [__WEBPACK_IMPORTED_MODULE_0__components_Crud_Edit__["a" /* default */]],
+    components: { CrudForm: __WEBPACK_IMPORTED_MODULE_1__Form_vue___default.a, CrudBack: __WEBPACK_IMPORTED_MODULE_2__components_Crud_Back_vue___default.a, CreateButton: __WEBPACK_IMPORTED_MODULE_3__components_Crud_CreateButton_vue___default.a },
+    data: function data() {
+        return {
+            module: 'countries'
+        };
+    }
+});
+
+/***/ }),
+/* 92 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "row"
+  }, [_c('div', {
+    staticClass: "col-md-12"
+  }, [_c('div', {
+    staticClass: "panel panel-default"
+  }, [_c('div', {
+    staticClass: "panel-heading"
+  }, [_c('div', {
+    staticClass: "row"
+  }, [_c('div', {
+    staticClass: "col-md-6"
+  }, [_vm._v("\n                        " + _vm._s(_vm.store.title) + "\n                    ")]), _vm._v(" "), _c('div', {
+    staticClass: "col-md-6 text-right"
+  }, [_c('create-button', {
+    attrs: {
+      "name": 'users-create'
+    }
+  })], 1)])]), _vm._v(" "), _c('div', {
+    staticClass: "panel-body"
+  }, [_c('crud-form', {
+    attrs: {
+      "store": _vm.store,
+      "item": _vm.item,
+      "module": _vm.module
+    }
+  })], 1), _vm._v(" "), _c('div', {
+    staticClass: "panel-footer"
+  }, [_c('crud-back', {
+    attrs: {
+      "name": _vm.module
+    }
+  })], 1)])])])
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-0a9a2047", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

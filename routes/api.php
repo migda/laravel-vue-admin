@@ -23,5 +23,6 @@ Route::group([
     'as' => 'api.v1.',
     'middleware' => 'admin'
 ], function () {
+    Route::resource('countries', 'CountriesController', ['except' => ['create', 'edit']]);
     Route::resource('users', 'UsersController', ['except' => ['create', 'edit']]);
 });

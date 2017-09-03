@@ -3,6 +3,9 @@ import Router from 'vue-router'
 
 // Components
 import Example from './components/Example.vue'
+import Countries from './views/countries/Index.vue'
+import CountriesCreate from './views/countries/Create.vue'
+import CountriesEdit from './views/countries/Edit.vue'
 import Users from './views/users/Index.vue'
 import UsersCreate from './views/users/Create.vue'
 import UsersEdit from './views/users/Edit.vue'
@@ -18,6 +21,24 @@ export function newRouter() {
                 path: adminUrl, name: 'dashboard', component: Example,
                 meta: {
                     title: 'Dashboard',
+                }
+            },
+            {
+                path: adminUrl + 'countries', name: 'countries', component: Countries,
+                meta: {
+                    title: 'Countries',
+                }
+            },
+            {
+                path: adminUrl + 'countries/create', name: 'countries-create', component: CountriesCreate,
+                meta: {
+                    title: 'Countries - Create',
+                }
+            },
+            {
+                path: adminUrl + 'countries/:id', name: 'countries-edit', component: CountriesEdit,
+                meta: {
+                    title: 'Countries - Edit',
                 }
             },
             {
