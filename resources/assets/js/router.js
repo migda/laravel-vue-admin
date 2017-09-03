@@ -4,6 +4,8 @@ import Router from 'vue-router'
 // Components
 import Example from './components/Example.vue'
 import Users from './views/users/Index.vue'
+import UsersCreate from './views/users/Create.vue'
+import UsersEdit from './views/users/Edit.vue'
 
 Vue.use(Router);
 let adminUrl = '/admin/';
@@ -22,6 +24,18 @@ export function newRouter() {
                 path: adminUrl + 'users', name: 'users', component: Users,
                 meta: {
                     title: 'Users',
+                }
+            },
+            {
+                path: adminUrl + 'users/create', name: 'users-create', component: UsersCreate,
+                meta: {
+                    title: 'Users - Create',
+                }
+            },
+            {
+                path: adminUrl + 'users/:id', name: 'users-edit', component: UsersEdit,
+                meta: {
+                    title: 'Users - Edit',
                 }
             }
         ],

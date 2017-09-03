@@ -8,6 +8,9 @@ Admin area (after successful login + auth as an admin): http://127.0.0.1:8000/ad
 
 - Laravel 5.4
 - Vue.js 2.4.2
+    - VueRouter
+    - VueResource
+    - VueSweetalert
 
 ##Instalation
 

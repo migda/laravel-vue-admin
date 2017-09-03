@@ -1,0 +1,42 @@
+<template>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-md-6">
+                            {{ store.title }}
+                        </div>
+                        <div class="col-md-6 text-right">
+                            <create-button :name="'users-create'"></create-button>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="panel-body">
+                    <users-form :store="store" :item="item" :module="module"></users-form>
+                </div>
+                <div class="panel-footer">
+                    <crud-back :name="module"></crud-back>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<script>
+    import CrudEdit from '../../components/Crud/Edit'
+    import UsersForm from './Form.vue'
+    import CrudBack from "../../components/Crud/Back.vue";
+    import CreateButton from "../../components/Crud/CreateButton.vue";
+
+    export default {
+        mixins: [CrudEdit],
+        components: {UsersForm,CrudBack,CreateButton},
+        data() {
+            return {
+                module: 'users'
+            }
+        }
+    }
+</script>

@@ -28,4 +28,5 @@ Route::group([
     Route::get('/', 'HomeController@index')->name('home');
     // Views => redirect to page with router-view
     Route::get('/users', 'HomeController@index');
+    Route::get('/users/{id}', 'HomeController@index');
 });

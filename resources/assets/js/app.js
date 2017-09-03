@@ -1,10 +1,15 @@
 require('./bootstrap');
 window.Vue = require('vue');
 // Common
+import VueResource from 'vue-resource'
+import VueSweetAlert from 'vue-sweetalert'
 // Router
 import {newRouter} from './router';
 // Components
 import Sidebar from './components/Sidebar.vue';
+
+Vue.use(VueResource);
+Vue.use(VueSweetAlert);
 // Simple store
 let store = {
     apiUrl: '/api/v1/',
@@ -16,6 +21,7 @@ let store = {
 const router = newRouter();
 router.beforeEach((to, from, next) => {
     store.module = to.name;
+    store.title = to.meta.title;
     next();
 });
 const app = new Vue({
