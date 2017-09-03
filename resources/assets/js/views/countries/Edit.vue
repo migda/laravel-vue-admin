@@ -14,7 +14,7 @@
 
                 </div>
                 <div class="panel-body">
-                    <crud-form :store="store" :item="item" :module="module"></crud-form>
+                    <countries-form :store="store" :item="item" :module="module"></countries-form>
                 </div>
                 <div class="panel-footer">
                     <crud-back :name="module"></crud-back>
@@ -26,13 +26,14 @@
 
 <script>
     import CrudEdit from '../../components/Crud/Edit'
-    import CrudForm from './Form.vue'
     import CrudBack from "../../components/Crud/Back.vue";
     import CreateButton from "../../components/Crud/CreateButton.vue";
 
+    import CountriesForm from './Form.vue'
+
     export default {
         mixins: [CrudEdit],
-        components: {CrudForm,CrudBack,CreateButton},
+        components: {CountriesForm, CrudBack, CreateButton},
         data() {
             return {
                 module: 'countries'

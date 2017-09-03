@@ -47502,6 +47502,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Crud_Form__ = __webpack_require__(93);
 //
 //
 //
@@ -47522,45 +47523,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    name: 'crud-form',
-    props: ['item', 'store', 'module'],
-    data: function data() {
-        return {};
-    },
-    mounted: function mounted() {},
-
-    methods: {
-        onSubmit: function onSubmit() {
-            if (this.item.id) this.updateItem();else this.createItem();
-        },
-        createItem: function createItem() {
-            var _this = this;
-
-            return new Promise(function (resolve) {
-                _this.$http.post(_this.store.apiUrl + _this.module, _this.item).then(function (response) {
-                    _this.$swal("Added!", response.data.name, "success");
-                    _this.item = {};
-                    resolve();
-                }, function () {
-                    _this.$swal("Something went wrong. Try again!", '', "error");
-                });
-            });
-        },
-        updateItem: function updateItem() {
-            var _this2 = this;
-
-            return new Promise(function (resolve) {
-                _this2.$http.patch(_this2.store.apiUrl + _this2.module + '/' + _this2.item.id + '/', _this2.item).then(function (response) {
-                    _this2.$swal("Edited!", _this2.item.name, "success");
-                    resolve();
-                }, function () {
-                    _this2.$swal("Something went wrong. Try again!", '', "error");
-                });
-            });
-        }
-    }
+    name: 'countries-form',
+    mixins: [__WEBPACK_IMPORTED_MODULE_0__components_Crud_Form__["a" /* default */]]
 });
 
 /***/ }),
@@ -47713,12 +47681,12 @@ module.exports = Component.exports
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Crud_Edit__ = __webpack_require__(66);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Form_vue__ = __webpack_require__(84);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Form_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__Form_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_Crud_Back_vue__ = __webpack_require__(60);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_Crud_Back_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_Crud_Back_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_Crud_CreateButton_vue__ = __webpack_require__(52);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_Crud_CreateButton_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_Crud_CreateButton_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Crud_Back_vue__ = __webpack_require__(60);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Crud_Back_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_Crud_Back_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_Crud_CreateButton_vue__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_Crud_CreateButton_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_Crud_CreateButton_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Form_vue__ = __webpack_require__(84);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Form_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__Form_vue__);
 //
 //
 //
@@ -47745,6 +47713,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+
 
 
 
@@ -47753,7 +47722,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mixins: [__WEBPACK_IMPORTED_MODULE_0__components_Crud_Edit__["a" /* default */]],
-    components: { CrudForm: __WEBPACK_IMPORTED_MODULE_1__Form_vue___default.a, CrudBack: __WEBPACK_IMPORTED_MODULE_2__components_Crud_Back_vue___default.a, CreateButton: __WEBPACK_IMPORTED_MODULE_3__components_Crud_CreateButton_vue___default.a },
+    components: { CountriesForm: __WEBPACK_IMPORTED_MODULE_3__Form_vue___default.a, CrudBack: __WEBPACK_IMPORTED_MODULE_1__components_Crud_Back_vue___default.a, CreateButton: __WEBPACK_IMPORTED_MODULE_2__components_Crud_CreateButton_vue___default.a },
     data: function data() {
         return {
             module: 'countries'
@@ -47786,7 +47755,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   })], 1)])]), _vm._v(" "), _c('div', {
     staticClass: "panel-body"
-  }, [_c('crud-form', {
+  }, [_c('countries-form', {
     attrs: {
       "store": _vm.store,
       "item": _vm.item,
@@ -47807,6 +47776,47 @@ if (false) {
      require("vue-hot-reload-api").rerender("data-v-0a9a2047", module.exports)
   }
 }
+
+/***/ }),
+/* 93 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony default export */ __webpack_exports__["a"] = ({
+    name: 'crud-form',
+    props: ['item', 'store', 'module'],
+    methods: {
+        onSubmit: function onSubmit() {
+            if (this.item.id) this.updateItem();else this.createItem();
+        },
+        createItem: function createItem() {
+            var _this = this;
+
+            return new Promise(function (resolve) {
+                _this.$http.post(_this.store.apiUrl + _this.module, _this.item).then(function (response) {
+                    _this.$swal("Added!", response.data.name, "success");
+                    _this.item = {};
+                    resolve();
+                }, function () {
+                    _this.$swal("Something went wrong. Try again!", '', "error");
+                });
+            });
+        },
+        updateItem: function updateItem() {
+            var _this2 = this;
+
+            return new Promise(function (resolve) {
+                _this2.$http.patch(_this2.store.apiUrl + _this2.module + '/' + _this2.item.id + '/', _this2.item).then(function (response) {
+                    _this2.$swal("Edited!", _this2.item.name, "success");
+                    resolve();
+                }, function () {
+                    _this2.$swal("Something went wrong. Try again!", '', "error");
+                });
+            });
+        }
+    }
+
+});
 
 /***/ })
 /******/ ]);
