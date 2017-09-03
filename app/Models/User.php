@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'role', 'email', 'password',
+        'name', 'country_id', 'role', 'email', 'password',
     ];
 
     /**
@@ -43,5 +43,13 @@ class User extends Authenticatable
             self::ROLE_ADMIN,
             self::ROLE_USER
         ];
+    }
+
+    /**
+     * Get Country that the User belongs to.
+     */
+    public function country()
+    {
+        return $this->belongsTo(Country::class, 'country_id');
     }
 }

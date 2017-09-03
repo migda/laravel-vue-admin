@@ -6,7 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class UsersController extends Controller
+class CountriesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,7 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $users = User::with(['country'])->paginate(10);
-        return $users;
+        // todo
     }
 
     /**
@@ -38,8 +37,7 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        $user = User::findOrFail($id);
-        return $user;
+        // todo
     }
 
     /**
