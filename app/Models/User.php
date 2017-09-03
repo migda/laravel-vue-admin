@@ -47,6 +47,8 @@ class User extends Authenticatable
 
     /**
      * Get Country that the User belongs to.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function country()
     {
