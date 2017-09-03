@@ -16,7 +16,7 @@ class UsersController extends Controller
     public function index()
     {
         $users = User::with(['country'])->paginate(10);
-        return $users;
+        return response($users);
     }
 
     /**
@@ -27,7 +27,14 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        // todo
+        $user = User::create([
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+            'name' => $request->name,
+            'role' => $request->role,
+            'country_id' => $request->country['id'],
+        ]);
+        return response($user);
     }
 
     /**
@@ -38,8 +45,9 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        $user = User::findOrFail($id);
-        return $user;
+        User::findOrFail($id);
+        $user = User::query()->where('id',$id)->with(['country']);
+        return response($user->first());
     }
 
     /**
@@ -51,7 +59,14 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // todo
+        $user = User::findOrFail($id);
+        $user->update([
+            'email' => $request->email,
+            'name' => $request->name,
+            'role' => $request->role,
+            'country_id' => $request->country['id'],
+        ]);
+        return response($user);
     }
 
     /**
@@ -63,5 +78,25 @@ class UsersController extends Controller
     public function destroy($id)
     {
         // todo
+    }
+
+    /**
+     * Get user roles
+     *
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
+     */
+    public function getRoles()
+    {
+        return response([
+                [
+                    'id' => User::ROLE_USER,
+                    'name' => 'User'
+                ],
+                [
+                    'id' => User::ROLE_ADMIN,
+                    'name' => 'Administrator'
+                ]
+            ]
+        );
     }
 }

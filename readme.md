@@ -11,6 +11,7 @@ Admin area (after successful login + auth as an admin): http://127.0.0.1:8000/ad
     - VueRouter
     - VueResource
     - VueSweetalert
+    - VueMultiselect
 
 ##Instalation
 

@@ -1,6 +1,14 @@
 export default {
     name: 'crud-form',
     props: ['item', 'store', 'module'],
+    data() {
+      return {
+          tmpItem: {}
+      }
+    },
+    mounted() {
+        this.tmpItem = JSON.parse(JSON.stringify(this.item));
+    },
     methods: {
         onSubmit() {
             if (this.item.id)
@@ -12,7 +20,7 @@ export default {
             return new Promise((resolve) => {
                     this.$http.post(this.store.apiUrl + this.module, this.item).then((response) => {
                         this.$swal("Added!", response.data.name, "success");
-                        this.item = {};
+                        this.$emit('added');
                         resolve();
                     }, () => {
                         this.$swal("Something went wrong. Try again!", '', "error");

@@ -24,5 +24,6 @@ Route::group([
     'middleware' => 'admin'
 ], function () {
     Route::resource('countries', 'CountriesController', ['except' => ['create', 'edit']]);
+    Route::get('users/roles', 'UsersController@getRoles');
     Route::resource('users', 'UsersController', ['except' => ['create', 'edit']]);
 });

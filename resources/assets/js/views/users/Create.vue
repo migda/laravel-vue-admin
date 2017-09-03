@@ -11,7 +11,7 @@
 
                 </div>
                 <div class="panel-body">
-                    <users-form :store="store" :item="item" :module="module"></users-form>
+                    <users-form :store="store" :item="item" :module="module" v-on:added="added"></users-form>
                 </div>
                 <div class="panel-footer">
                     <crud-back :name="module"></crud-back>
@@ -31,10 +31,27 @@
             CrudBack,
             UsersForm
         },
+        mounted() {
+            this.tmpItem = JSON.parse(JSON.stringify(this.item));
+        },
         data() {
             return {
                 module: 'users',
-                item: {}
+                item: {
+                    id: null,
+                    email: '',
+                    password: '',
+                    name: '',
+                    country: {},
+                    role: null
+                },
+                tmpItem: {}
+            }
+        },
+        methods: {
+            added() {
+                // Set default value
+                this.item = JSON.parse(JSON.stringify(this.tmpItem));
             }
         }
     }

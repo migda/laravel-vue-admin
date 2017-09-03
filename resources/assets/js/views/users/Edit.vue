@@ -26,16 +26,23 @@
 
 <script>
     import CrudEdit from '../../components/Crud/Edit'
-    import UsersForm from './Form.vue'
     import CrudBack from "../../components/Crud/Back.vue";
     import CreateButton from "../../components/Crud/CreateButton.vue";
 
+    import UsersForm from './Form.vue'
+
     export default {
         mixins: [CrudEdit],
-        components: {UsersForm,CrudBack,CreateButton},
+        components: {UsersForm, CrudBack, CreateButton},
         data() {
             return {
-                module: 'users'
+                module: 'users',
+                item: {
+                    id: null,
+                    country: {
+                        id: 1
+                    }
+                }
             }
         }
     }
