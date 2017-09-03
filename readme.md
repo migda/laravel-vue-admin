@@ -12,6 +12,7 @@ Admin area (after successful login + auth as an admin): http://127.0.0.1:8000/ad
     - VueResource
     - VueSweetalert
     - VueMultiselect
+- Loader: https://www.w3schools.com/howto/howto_css_loader.asp
 
 ##Instalation
 

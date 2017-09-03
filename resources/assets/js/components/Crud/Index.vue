@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="row">
+        <div class="row" v-if="!loading">
             <div class="col-md-12">
                 <table class="table table-hover">
                     <thead class="thead-inverse">
@@ -15,13 +15,14 @@
                 <div>Paginate toddo</div>
             </div>
         </div>
+        <loader v-else>Loading {{ store.module }}</loader>
     </div>
 </template>
 
 <script>
     export default {
         name: 'crud-index',
-        props: ['columns'],
+        props: ['columns', 'store', 'loading'],
         components: {},
         methods: {}
     }

@@ -14,7 +14,8 @@
 
                 </div>
                 <div class="panel-body">
-                    <users-form :store="store" :item="item" :module="module"></users-form>
+                    <users-form :store="store" :item="item" :module="module" v-if="item.id"></users-form>
+                    <loader v-else>Loading user #{{ id }}</loader>
                 </div>
                 <div class="panel-footer">
                     <crud-back :name="module"></crud-back>

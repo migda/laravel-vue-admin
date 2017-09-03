@@ -4,12 +4,14 @@ window.Vue = require('vue');
 import Multiselect from 'vue-multiselect'
 import VueResource from 'vue-resource'
 import VueSweetAlert from 'vue-sweetalert'
+import Loader from './components/Loader.vue'
 // Router
 import {newRouter} from './router';
 // Components
 import Sidebar from './components/Sidebar.vue';
 
 Vue.component('multiselect', Multiselect);
+Vue.component('loader', Loader);
 Vue.use(VueResource);
 Vue.use(VueSweetAlert);
 // Simple store
@@ -29,7 +31,7 @@ router.beforeEach((to, from, next) => {
 const app = new Vue({
     el: '#app',
     router,
-    components: {Sidebar},
+    components: {Sidebar, Loader},
     data: {
         store
     }

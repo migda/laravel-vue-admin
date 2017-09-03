@@ -14,7 +14,8 @@
 
                 </div>
                 <div class="panel-body">
-                    <countries-form :store="store" :item="item" :module="module"></countries-form>
+                    <countries-form :store="store" :item="item" :module="module" v-if="item.id"></countries-form>
+                    <loader v-else>Loading country #{{ id }}</loader>
                 </div>
                 <div class="panel-footer">
                     <crud-back :name="module"></crud-back>
