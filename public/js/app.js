@@ -48036,8 +48036,8 @@ if (false) {
                     _this.$swal("Added!", response.data.name, "success");
                     _this.$emit('added');
                     resolve();
-                }, function () {
-                    _this.$swal("Something went wrong. Try again!", '', "error");
+                }, function (response) {
+                    _this.$swal("Something went wrong. Try again!", JSON.stringify(response.data), "error");
                 });
             });
         },
@@ -48048,8 +48048,8 @@ if (false) {
                 _this2.$http.patch(_this2.store.apiUrl + _this2.module + '/' + _this2.item.id + '/', _this2.item).then(function (response) {
                     _this2.$swal("Edited!", _this2.item.name, "success");
                     resolve();
-                }, function () {
-                    _this2.$swal("Something went wrong. Try again!", '', "error");
+                }, function (response) {
+                    _this2.$swal("Something went wrong. Try again!", JSON.stringify(response.data), "error");
                 });
             });
         }

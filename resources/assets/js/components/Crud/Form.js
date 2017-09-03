@@ -22,8 +22,8 @@ export default {
                         this.$swal("Added!", response.data.name, "success");
                         this.$emit('added');
                         resolve();
-                    }, () => {
-                        this.$swal("Something went wrong. Try again!", '', "error");
+                    }, (response) => {
+                        this.$swal("Something went wrong. Try again!", JSON.stringify(response.data), "error");
                     });
                 }
             );
@@ -33,8 +33,8 @@ export default {
                     this.$http.patch(this.store.apiUrl + this.module + '/' + this.item.id + '/', this.item).then((response) => {
                         this.$swal("Edited!", this.item.name, "success");
                         resolve();
-                    }, () => {
-                        this.$swal("Something went wrong. Try again!", '', "error");
+                    }, (response) => {
+                        this.$swal("Something went wrong. Try again!", JSON.stringify(response.data), "error");
                     });
                 }
             );
