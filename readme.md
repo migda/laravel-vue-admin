@@ -1,4 +1,4 @@
-# Laravel 5.4 boilerplate with Vue.js admin area + REST API
+# Laravel 5.7 boilerplate with Vue.js 2 admin area + REST API
 
 Role based (user / admin) Laravel boilerplate application with admin area written in Vue.js + Vue Router + REST API.
 
@@ -6,8 +6,8 @@ Admin area (after successful login + auth as an admin): http://127.0.0.1:8000/ad
 
 ##Libraries and frameworks I used in this project:
 
-- Laravel 5.4
-- Vue.js 2.4.2
+- Laravel 5.7
+- Vue.js 2.5.17
     - VueRouter
     - VueResource
     - VueSweetalert
@@ -16,8 +16,10 @@ Admin area (after successful login + auth as an admin): http://127.0.0.1:8000/ad
 
 ##Instalation
 
+    - Composer:
+    * cmd: composer install
     - Laravel:
-    * cmd: cp .env.example to .env (copy .env.example file and rename copied file to .env)
+    * cmd: cp .env.example .env (copy .env.example file and rename copied file to .env)
     * modify .env and set up db connection
     * cmd: php artisan key:generate
     * cmd: php artisan migrate
