@@ -16,8 +16,10 @@ Admin area (after successful login + auth as an admin): http://127.0.0.1:8000/ad
 
 ##Instalation
 
+    - Composer:
+    * cmd: composer install
     - Laravel:
-    * cmd: cp .env.example to .env (copy .env.example file and rename copied file to .env)
+    * cmd: cp .env.example .env (copy .env.example file and rename copied file to .env)
     * modify .env and set up db connection
     * cmd: php artisan key:generate
     * cmd: php artisan migrate
