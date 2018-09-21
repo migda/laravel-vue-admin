@@ -1,4 +1,4 @@
-# Laravel 5.7 boilerplate with Vue.js 2 admin area + REST API
+# Laravel 5.7 boilerplate with Vue.js 2 + Vuex + VueRouter
 
 Role based (user / admin) Laravel boilerplate application with admin area written in Vue.js + Vue Router + REST API.
 
@@ -8,6 +8,7 @@ Admin area (after successful login + auth as an admin): http://127.0.0.1:8000/ad
 
 - Laravel 5.7
 - Vue.js 2.5.17
+    - Vuex 3.0.1
     - VueRouter
     - VueResource
     - VueSweetalert
@@ -34,3 +35,4 @@ Admin area (after successful login + auth as an admin): http://127.0.0.1:8000/ad
     *cmd: npm install
     *cmd: npm run dev
     
+You can find admin assetss in resource/admin/. Frontend (user) and backend (admin panel) are separeted.
