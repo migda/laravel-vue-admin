@@ -19,18 +19,15 @@
                 </div>
                 <div class="form-group">
                     <label for="role">Role:</label>
-                    <select v-model="item.role"  class="form-control">
-                        <option :value="null">Choose from roles</option>
-                        <option v-for="role in roles" :value="role.id">{{role.name}}</option>
-                    </select>
-
+                    <multiselect v-model="item.role" :options="roles" :searchable="true"
+                                 :show-labels="false" placeholder="Choose role" :multiple="false"
+                                 label="name" track-by="id"></multiselect>
                 </div>
                 <div class="form-group">
                     <label for="country">Country:</label>
                     <multiselect v-model="item.country" :options="countries" :searchable="true"
                                  :show-labels="false" placeholder="Choose country" :multiple="false"
                                  label="name" track-by="id"></multiselect>
-
                 </div>
             </div>
         </div>
@@ -47,22 +44,25 @@
     import CrudForm from '../../components/Crud/Form'
 
     export default {
-        name: 'users-form',
+        name: 'UsersForm',
         mixins: [CrudForm],
         data() {
             return {
-                countries: [],
-                roles: []
+                countries: []
+            }
+        },
+        computed: {
+            roles() {
+                return this.$store.getters.roles;
             }
         },
         mounted() {
             this.getCountries();
-            this.getRoles();
         },
         methods: {
             getCountries() {
                 return new Promise((resolve) => {
-                        this.$http.get(this.store.apiUrl + 'countries/', {params: {paginate: false}}).then((response) => {
+                        this.$http.get(this.apiUrl + 'countries/', {params: {paginate: false}}).then((response) => {
                             this.countries = response.data;
                             resolve();
                         }, () => {
@@ -70,18 +70,7 @@
                         });
                     }
                 );
-            },
-            getRoles() {
-                return new Promise((resolve) => {
-                        this.$http.get(this.store.apiUrl + this.module + '/roles').then((response) => {
-                            this.roles = response.data;
-                            resolve();
-                        }, () => {
-                            this.$swal("Something went wrong. Try again!", '', "error");
-                        });
-                    }
-                );
-            },
+            }
         }
     }
 </script>

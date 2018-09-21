@@ -1,7 +1,7 @@
 <template>
     <div class="row">
         <div class="panel panel-default">
-            <div class="panel-heading">Sidebar example</div>
+            <div class="panel-heading">Administration panel</div>
 
             <div class="panel-body">
                 <ul class="list-unstyled">
@@ -28,7 +28,6 @@
 
 <script>
     export default {
-        name: 'sidebar',
-        props: ['store']
+        name: 'Sidebar'
     }
 </script>

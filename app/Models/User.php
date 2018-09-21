@@ -34,6 +34,17 @@ class User extends Authenticatable
     const ROLE_ADMIN = 2;
 
     /**
+     * Get Country that the User belongs to.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function country()
+    {
+        return $this->belongsTo(Country::class, 'country_id');
+    }
+
+
+    /**
      * Return array of roles' ids
      * @return array
      */
@@ -46,12 +57,31 @@ class User extends Authenticatable
     }
 
     /**
-     * Get Country that the User belongs to.
+     * Get user roles
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return array
      */
-    public function country()
+    public static function getRoles()
     {
-        return $this->belongsTo(Country::class, 'country_id');
+        return [
+            [
+                'id' => self::ROLE_USER,
+                'name' => 'User'
+            ],
+            [
+                'id' => self::ROLE_ADMIN,
+                'name' => 'Admin'
+            ]
+        ];
+    }
+
+    /**
+     * Get user's role
+     * @return mixed
+     */
+    public function getRole()
+    {
+        $key = array_search($this->role, array_column(self::getRoles(), 'id'));
+        return self::getRoles()[$key];
     }
 }

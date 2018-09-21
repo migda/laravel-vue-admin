@@ -5,16 +5,16 @@
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col-md-6">
-                            {{ store.title }}
+                            {{ title }}
                         </div>
                         <div class="col-md-6 text-right">
-                            <create-button :name="'users-create'"></create-button>
+                            <create-button :name="module+'-create'"></create-button>
                         </div>
                     </div>
 
                 </div>
                 <div class="panel-body">
-                    <countries-form :store="store" :item="item" :module="module" v-if="item.id"></countries-form>
+                    <countries-form :item="item" v-if="item.id"></countries-form>
                     <loader v-else>Loading country #{{ id }}</loader>
                 </div>
                 <div class="panel-footer">
@@ -33,12 +33,8 @@
     import CountriesForm from './Form.vue'
 
     export default {
+        name: 'CountriesEdit',
         mixins: [CrudEdit],
-        components: {CountriesForm, CrudBack, CreateButton},
-        data() {
-            return {
-                module: 'countries'
-            }
-        }
+        components: {CountriesForm, CrudBack, CreateButton}
     }
 </script>

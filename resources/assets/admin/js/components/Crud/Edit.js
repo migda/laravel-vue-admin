@@ -1,11 +1,22 @@
 export default {
-    props: ['store'],
+    props: [],
     data() {
         return {
             loading: true,
             item: {},
             id: this.$route.params.id
         };
+    },
+    computed: {
+        apiUrl() {
+            return this.$store.getters.apiUrl;
+        },
+        module() {
+            return this.$store.getters.module;
+        },
+        title() {
+            return this.$store.getters.title;
+        }
     },
 
     mounted: function () {
@@ -26,7 +37,7 @@ export default {
             );
         },
         getUrl() {
-            return this.store.apiUrl + this.module + '/' + this.id + '/';
+            return this.apiUrl + this.module + '/' + this.id + '/';
         },
     }
 };

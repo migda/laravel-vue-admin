@@ -18,7 +18,7 @@ Route::group([
     'as' => 'admin.api.v1.',
     'middleware' => 'admin'
 ], function () {
+    Route::get('start', 'StartController@index');
     Route::resource('countries', 'CountriesController', ['except' => ['create', 'edit']]);
-    Route::get('users/roles', 'UsersController@getRoles');
     Route::resource('users', 'UsersController', ['except' => ['create', 'edit']]);
 });

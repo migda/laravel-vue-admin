@@ -5,13 +5,13 @@
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col-md-6">
-                            {{ store.title }}
+                            {{ title }}
                         </div>
                     </div>
 
                 </div>
                 <div class="panel-body">
-                    <users-form :store="store" :item="item" :module="module"></users-form>
+                    <countries-form :item="item" @created="onCreated"></countries-form>
                 </div>
                 <div class="panel-footer">
                     <crud-back :name="module"></crud-back>
@@ -22,20 +22,16 @@
 </template>
 
 <script>
-    import UsersForm from './Form.vue'
+    import CrudCreate from '../../components/Crud/Create'
+    import CountriesForm from './Form.vue'
     import CrudBack from "../../components/Crud/Back.vue";
 
     export default {
-        props: ['store'],
+        name: 'CountriesCreate',
+        mixins: [CrudCreate],
         components: {
             CrudBack,
-            UsersForm
-        },
-        data() {
-            return {
-                module: 'countries',
-                item: {}
-            }
+            CountriesForm
         }
     }
 </script>

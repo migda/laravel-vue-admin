@@ -15,15 +15,20 @@
                 <div>Paginate toddo</div>
             </div>
         </div>
-        <loader v-else>Loading {{ store.module }}</loader>
+        <loader v-else>Loading {{ this.module }}</loader>
     </div>
 </template>
 
 <script>
     export default {
-        name: 'crud-index',
-        props: ['columns', 'store', 'loading'],
+        name: 'CrudIndex',
+        props: ['columns', 'loading'],
         components: {},
-        methods: {}
+        methods: {},
+        computed: {
+            module() {
+                return this.$store.getters.module;
+            }
+        }
     }
 </script>

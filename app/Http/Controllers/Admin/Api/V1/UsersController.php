@@ -32,7 +32,7 @@ class UsersController extends Controller
             'email' => $request->email,
             'password' => bcrypt($request->password),
             'name' => $request->name,
-            'role' => $request->role,
+            'role' => $request->role['id'],
             'country_id' => $request->country['id'],
         ]);
         return response($user);
@@ -46,9 +46,18 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        User::findOrFail($id);
-        $user = User::query()->where('id',$id)->with(['country']);
-        return response($user->first());
+        return response($this->getItem($id));
+    }
+
+    /**
+     * @param $id
+     * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model|null|object
+     */
+    private function getItem($id)
+    {
+        $user = User::query()->where('id', $id)->with(['country'])->firstOrFail();
+        $user->role = $user->getRole();
+        return $user;
     }
 
     /**
@@ -64,7 +73,7 @@ class UsersController extends Controller
         $user->update([
             'email' => $request->email,
             'name' => $request->name,
-            'role' => $request->role,
+            'role' => $request->role['id'],
             'country_id' => $request->country['id'],
         ]);
         return response($user);

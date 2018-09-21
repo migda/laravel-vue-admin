@@ -6,7 +6,7 @@
 
 <script>
     export default {
-        name: 'create-button',
+        name: 'CreateButton',
         props: ['name']
     }
 </script>

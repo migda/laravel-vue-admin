@@ -5,13 +5,13 @@
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col-md-6">
-                            {{ store.title }}
+                            {{ title }}
                         </div>
                     </div>
 
                 </div>
                 <div class="panel-body">
-                    <users-form :store="store" :item="item" :module="module" v-on:added="added"></users-form>
+                    <users-form :item="item" @created="onCreated"></users-form>
                 </div>
                 <div class="panel-footer">
                     <crud-back :name="module"></crud-back>
@@ -22,11 +22,13 @@
 </template>
 
 <script>
+    import CrudCreate from '../../components/Crud/Create'
     import UsersForm from './Form.vue'
     import CrudBack from "../../components/Crud/Back.vue";
 
     export default {
-        props: ['store'],
+        name: 'UsersCreate',
+        mixins: [CrudCreate],
         components: {
             CrudBack,
             UsersForm
@@ -36,20 +38,19 @@
         },
         data() {
             return {
-                module: 'users',
                 item: {
                     id: null,
                     email: '',
                     password: '',
                     name: '',
-                    country: {},
+                    country: null,
                     role: null
                 },
                 tmpItem: {}
             }
         },
         methods: {
-            added() {
+            onCreated() {
                 // Set default value
                 this.item = JSON.parse(JSON.stringify(this.tmpItem));
             }

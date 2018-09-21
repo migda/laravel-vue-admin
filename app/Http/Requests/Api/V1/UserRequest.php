@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Api\V1;
 
 use App\Http\Requests\ApiRequest;
+use App\Models\User;
 
 class UserRequest extends ApiRequest
 {
@@ -15,19 +16,23 @@ class UserRequest extends ApiRequest
     {
         $id = $this->route('user');
         switch ($this->method()) {
-            case 'POST': {
-                return [
-                    'email' => "required|unique:users,email",
-                    'country.id' => "required|exists:countries,id"
-                ];
-            }
+            case 'POST':
+                {
+                    return [
+                        'email' => "required|unique:users,email",
+                        'role.id' => "required|in:" . implode(",", User::roles()),
+                        'country.id' => "required|exists:countries,id"
+                    ];
+                }
             case 'PUT':
-            case 'PATCH': {
-                return [
-                    'name' => "required|unique:users,name,$id,id",
-                    'country.id' => "required|exists:countries,id"
-                ];
-            }
+            case 'PATCH':
+                {
+                    return [
+                        'name' => "required|unique:users,name,$id,id",
+                        'role.id' => "required|in:" . implode(",", User::roles()),
+                        'country.id' => "required|exists:countries,id"
+                    ];
+                }
             default:
                 break;
         }

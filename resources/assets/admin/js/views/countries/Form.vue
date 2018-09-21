@@ -22,7 +22,7 @@
     import CrudEdit from '../../components/Crud/Form'
 
     export default {
-        name: 'countries-form',
+        name: 'CountriesForm',
         mixins: [CrudEdit]
     }
 </script>
