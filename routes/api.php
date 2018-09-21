@@ -13,12 +13,12 @@ use Illuminate\Http\Request;
 |
 */
 Route::group([
-    'namespace' => 'Api\V1',
-    'prefix' => 'v1',
-    'as' => 'api.v1.',
+    'namespace' => 'Admin\Api\V1',
+    'prefix' => 'admin/v1',
+    'as' => 'admin.api.v1.',
     'middleware' => 'admin'
 ], function () {
+    Route::get('start', 'StartController@index');
     Route::resource('countries', 'CountriesController', ['except' => ['create', 'edit']]);
-    Route::get('users/roles', 'UsersController@getRoles');
     Route::resource('users', 'UsersController', ['except' => ['create', 'edit']]);
 });

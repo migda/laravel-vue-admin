@@ -54,7 +54,7 @@
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
-                                @if (Auth::user()->role == \App\Models\User::ROLE_ADMIN)
+                                @if (Auth::user()->isAdmin())
                                     <li><a href="{{ route('admin.home') }}">Admin Panel</a></li>
                                     <li class="divider"></li>
                                 @endif
