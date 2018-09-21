@@ -73,7 +73,7 @@ class UsersController extends Controller
         $user->update([
             'email' => $request->email,
             'name' => $request->name,
-            'role' => $request->role['id'],
+            'role_id' => $request->role['id'],
             'country_id' => $request->country['id'],
         ]);
         return response($user);

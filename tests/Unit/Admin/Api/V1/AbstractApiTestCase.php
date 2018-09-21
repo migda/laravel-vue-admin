@@ -32,7 +32,7 @@ class AbstractApiTestCase extends TestCase
         parent::setUp();
         $this->apiUrl = config('app.url') . '/api/admin/v1/';
         $this->admin = factory(User::class)->create([
-            'role' => User::ROLE_ADMIN
+            'role_id' => User::ROLE_ADMIN
         ]);
         $this->actingAs($this->admin);
     }

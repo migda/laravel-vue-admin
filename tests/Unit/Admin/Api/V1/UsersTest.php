@@ -28,13 +28,12 @@ class UsersTest extends AbstractApiTestCase
     {
         // Mock up
         $user = factory(User::class)->make()->toArray();
-        $role_id = $user['role'];
         $postData = $user;
         $postData['role'] = [
-            'id' => $role_id
+            'id' => $postData['role_id']
         ];
         $postData['country'] = [
-            'id' => $user['country_id']
+            'id' => $postData['country_id']
         ];
 
         // Tests
@@ -54,13 +53,12 @@ class UsersTest extends AbstractApiTestCase
         $user = factory(User::class)->create();
         $new_user = factory(User::class)->make()->toArray();
 
-        $role_id = $new_user['role'];
         $patchData = $new_user;
         $patchData['role'] = [
-            'id' => $role_id
+            'id' => $patchData['role_id']
         ];
         $patchData['country'] = [
-            'id' => $new_user['country_id']
+            'id' => $patchData['country_id']
         ];
 
         // Tests

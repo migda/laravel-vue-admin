@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'country_id', 'role', 'email', 'password',
+        'name', 'country_id', 'role_id', 'email', 'password',
     ];
 
     /**
@@ -81,7 +81,26 @@ class User extends Authenticatable
      */
     public function getRole()
     {
-        $key = array_search($this->role, array_column(self::getRoles(), 'id'));
+        $key = array_search($this->role_id, array_column(self::getRoles(), 'id'));
         return self::getRoles()[$key];
+    }
+
+    /**
+     * Get user's role id
+     * @return mixed
+     */
+    public function getRoleId()
+    {
+        return $this->role_id;
+    }
+
+    /**
+     * Check if user is admin
+     *
+     * @return bool
+     */
+    public function isAdmin()
+    {
+        return $this->getRoleId() == User::ROLE_ADMIN;
     }
 }
