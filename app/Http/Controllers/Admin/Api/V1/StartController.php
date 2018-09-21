@@ -17,8 +17,8 @@ class StartController extends Controller
     {
         $data = [
             'name' => config('app.name'),
-            'url' => config('app.url') . 'admin',
-            'api_url' => config('app.url') . 'api/admin/v1/',
+            'url' => config('app.url') . '/admin',
+            'api_url' => config('app.url') . '/api/admin/v1/',
             'roles' => User::getRoles(),
         ];
         return response()->json($data);
