@@ -88,24 +88,4 @@ class UsersController extends Controller
     {
         // todo
     }
-
-    /**
-     * Get user roles
-     *
-     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
-     */
-    public function getRoles()
-    {
-        return response([
-                [
-                    'id' => User::ROLE_USER,
-                    'name' => 'User'
-                ],
-                [
-                    'id' => User::ROLE_ADMIN,
-                    'name' => 'Administrator'
-                ]
-            ]
-        );
-    }
 }
