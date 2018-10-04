@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit\Admin\Api\V1;
+namespace Tests\Feature\Admin\Api\V1;
 
 use App\Models\Country;
 use App\Models\User;
