@@ -19,15 +19,4 @@ class ExampleTest extends TestCase
     {
         $this->assertTrue(true);
     }
-
-    /**
-     * A basic test db example
-     */
-    public function testDbConnection()
-    {
-        // Create sample User
-        $user = factory(User::class)->create();
-        // Tests
-        $this->assertDatabaseHas('users', ['email' => $user->email]);
-    }
 }

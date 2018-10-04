@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers\Admin\Api\V1;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\V1\UserRequest;
 use App\Models\User;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
 class UsersController extends Controller
 {
@@ -32,7 +31,7 @@ class UsersController extends Controller
             'email' => $request->email,
             'password' => bcrypt($request->password),
             'name' => $request->name,
-            'role' => $request->role['id'],
+            'role_id' => $request->role['id'],
             'country_id' => $request->country['id'],
         ]);
         return response($user);
@@ -88,25 +87,5 @@ class UsersController extends Controller
     public function destroy($id)
     {
         // todo
-    }
-
-    /**
-     * Get user roles
-     *
-     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
-     */
-    public function getRoles()
-    {
-        return response([
-                [
-                    'id' => User::ROLE_USER,
-                    'name' => 'User'
-                ],
-                [
-                    'id' => User::ROLE_ADMIN,
-                    'name' => 'Administrator'
-                ]
-            ]
-        );
     }
 }

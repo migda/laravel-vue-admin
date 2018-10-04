@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit\Admin\Api\V1;
+namespace Tests\Feature\Admin\Api\V1;
 
 use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
