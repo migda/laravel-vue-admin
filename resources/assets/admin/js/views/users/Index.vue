@@ -13,7 +13,8 @@
                     </div>
                 </div>
                 <div class="panel-body">
-                    <crud-index :columns="columns" :loading="loading">
+                    <crud-index :columns="columns" :loading="loading" :pagination="pagination"
+                                @changePage="changePage">
                         <tr v-for="item in items" :key="item.id">
                             <td>{{ item.id }}</td>
                             <td>

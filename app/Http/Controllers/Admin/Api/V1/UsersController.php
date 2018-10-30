@@ -15,7 +15,7 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $users = User::with(['country'])->paginate(10);
+        $users = User::with(['country'])->paginate(config('api.default_per_page'));
         return response($users);
     }
 
