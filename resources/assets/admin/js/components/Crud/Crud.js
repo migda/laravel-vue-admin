@@ -3,7 +3,10 @@ export default {
     data() {
         return {
             loading: true,
-            items: []
+            items: [],
+            pagination: {
+                isLoading: true
+            }
         };
     },
     computed: {
@@ -23,10 +26,12 @@ export default {
         });
     },
     methods: {
-        getItems() {
+        getItems(page = 1) {
             return new Promise((resolve) => {
-                    this.$http.get(this.getUrl()).then((response) => {
+                    this.setPaginationLoading();
+                    this.$http.get(this.getUrl(page)).then((response) => {
                         this.items = response.data.data;
+                        this.setPagination(response.data);
                         resolve();
                     }, () => {
                         this.$swal("Something went wrong. Try again!", '', "error");
@@ -34,8 +39,25 @@ export default {
                 }
             );
         },
-        getUrl() {
-            return this.$store.getters.apiUrl + this.module + '/';
-        }
+        getUrl(page = 1) {
+            return this.$store.getters.apiUrl + this.module + '/?page=' + page;
+        },
+        setPaginationLoading() {
+            this.pagination.isLoading = true;
+        },
+        setPagination(data) {
+            this.pagination = {
+                currentPage: data.current_page,
+                from: data.from,
+                lastPage: data.last_page,
+                to: data.to,
+                total: data.total,
+                isLoading: false
+            }
+        },
+        changePage(page) {
+
+            this.getItems(page);
+        },
     }
 };

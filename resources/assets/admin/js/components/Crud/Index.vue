@@ -12,7 +12,10 @@
                     <slot></slot>
                     </tbody>
                 </table>
-                <div>Paginate toddo</div>
+                <div>
+                    <pagination :pagination="pagination" :limiter="limiter"
+                                @changePage="changePage"></pagination>
+                </div>
             </div>
         </div>
         <loader v-else>Loading {{ this.module }}</loader>
@@ -20,15 +23,26 @@
 </template>
 
 <script>
+    import Pagination from "../Pagination";
+
     export default {
         name: 'CrudIndex',
-        props: ['columns', 'loading'],
-        components: {},
-        methods: {},
+        props: ['columns', 'loading', 'pagination'],
+        components: {Pagination},
+        data() {
+            return {
+                limiter: 7
+            }
+        },
         computed: {
             module() {
                 return this.$store.getters.module;
             }
-        }
+        },
+        methods: {
+            changePage(page) {
+                this.$emit('changePage', page);
+            },
+        },
     }
 </script>

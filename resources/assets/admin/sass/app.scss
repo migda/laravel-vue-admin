@@ -1,12 +1,10 @@
-
 // Fonts
 @import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
-
 // Variables
 @import "variables";
-
 // Bootstrap
 @import "~bootstrap-sass/assets/stylesheets/bootstrap";
-
 // Vue Multiselect
 @import '~vue-multiselect/dist/vue-multiselect.min.css';
+// Default scss
+@import "default";
