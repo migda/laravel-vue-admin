@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\Api\V1;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\Api\V1\CountryRequest;
 use App\Http\Resources\Admin\Api\V1\CountryResource;
 use App\Http\Resources\Admin\Api\V1\CountryResourceCollection;
 use App\Http\Resources\Admin\Api\V1\SuccessResource;
@@ -27,10 +28,10 @@ class CountriesController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param CountryRequest $request
      * @return SuccessResource
      */
-    public function store(Request $request): SuccessResource
+    public function store(CountryRequest $request): SuccessResource
     {
         $country = Country::create([
             'name' => $request->name,
@@ -53,11 +54,11 @@ class CountriesController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param CountryRequest $request
      * @param  int $id
      * @return SuccessResource
      */
-    public function update(Request $request, $id): SuccessResource
+    public function update(CountryRequest $request, $id): SuccessResource
     {
         $country = Country::findOrFail($id);
         $country->update([
