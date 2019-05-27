@@ -4,7 +4,7 @@ Role based (user / admin) Laravel boilerplate application with admin area writte
 
 Admin area (after successful login + auth as an admin): http://127.0.0.1:8000/admin
 
-##Libraries and frameworks I used in this project:
+## Libraries and frameworks I used in this project:
 
 - Laravel 5.8
 - Vue.js 2.5.17
@@ -15,7 +15,7 @@ Admin area (after successful login + auth as an admin): http://127.0.0.1:8000/ad
     - VueMultiselect
 - Loader: https://www.w3schools.com/howto/howto_css_loader.asp
 
-##Instalation
+## Instalation
 
     - Composer:
     * cmd: composer install
