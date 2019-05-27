@@ -63,7 +63,7 @@
             getCountries() {
                 return new Promise((resolve) => {
                         this.$http.get(this.apiUrl + 'countries/', {params: {paginate: false}}).then((response) => {
-                            this.countries = response.data;
+                            this.countries = response.data.data;
                             resolve();
                         }, () => {
                             this.$swal("Something went wrong. Try again!", '', "error");

@@ -5,7 +5,6 @@ namespace Tests\Feature\Admin\Api\V1;
 use App\Models\Country;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
-
 class CountriesTest extends AbstractApiTestCase
 {
     use DatabaseTransactions;
@@ -31,7 +30,7 @@ class CountriesTest extends AbstractApiTestCase
 
         // Tests
         $this->postJson($this->apiUrl . $this->endpoint, $country)
-            ->assertStatus(200);
+            ->assertStatus(201);
         $this->assertDatabaseHas('countries', $country);
     }
 

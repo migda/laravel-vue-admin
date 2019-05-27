@@ -5,7 +5,6 @@ namespace Tests\Feature\Admin\Api\V1;
 use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
-
 class UsersTest extends AbstractApiTestCase
 {
     use DatabaseTransactions;
@@ -38,7 +37,7 @@ class UsersTest extends AbstractApiTestCase
 
         // Tests
         $this->postJson($this->apiUrl . $this->endpoint, $postData)
-            ->assertStatus(200);
+            ->assertStatus(201);
         $this->assertDatabaseHas($this->endpoint, $user);
     }
 
