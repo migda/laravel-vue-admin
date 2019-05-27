@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Admin\Api\V1;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Api\V1\UserRequest;
+use App\Http\Requests\Admin\Api\V1\UserRequest;
+use App\Http\Resources\Admin\Api\V1\SuccessResource;
+use App\Http\Resources\Admin\Api\V1\UserResource;
+use App\Http\Resources\Admin\Api\V1\UserResourceCollection;
 use App\Models\User;
 
 class UsersController extends Controller
@@ -11,21 +14,20 @@ class UsersController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(): UserResourceCollection
     {
         $users = User::with(['country'])->paginate(config('api.default_per_page'));
-        return response($users);
+        return new UserResourceCollection($users);
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  UserRequest $request
-     * @return \Illuminate\Http\Response
+     * @return SuccessResource
      */
-    public function store(UserRequest $request)
+    public function store(UserRequest $request): SuccessResource
     {
         $user = User::create([
             'email' => $request->email,
@@ -34,18 +36,18 @@ class UsersController extends Controller
             'role_id' => $request->role['id'],
             'country_id' => $request->country['id'],
         ]);
-        return response($user);
+        return (new SuccessResource(new UserResource($user)))->setStatusCode(201);
     }
 
     /**
      * Display the specified resource.
      *
      * @param  int $id
-     * @return \Illuminate\Http\Response
+     * @return UserResource
      */
-    public function show($id)
+    public function show($id): UserResource
     {
-        return response($this->getItem($id));
+        return new UserResource($this->getItem($id));
     }
 
     /**
@@ -55,7 +57,6 @@ class UsersController extends Controller
     private function getItem($id)
     {
         $user = User::query()->where('id', $id)->with(['country'])->firstOrFail();
-        $user->role = $user->getRole();
         return $user;
     }
 
@@ -64,9 +65,9 @@ class UsersController extends Controller
      *
      * @param  UserRequest $request
      * @param  int $id
-     * @return \Illuminate\Http\Response
+     * @return SuccessResource
      */
-    public function update(UserRequest $request, $id)
+    public function update(UserRequest $request, $id): SuccessResource
     {
         $user = User::findOrFail($id);
         $user->update([
@@ -75,7 +76,7 @@ class UsersController extends Controller
             'role_id' => $request->role['id'],
             'country_id' => $request->country['id'],
         ]);
-        return response($user);
+        return (new SuccessResource(new UserResource($user)))->setStatusCode(200);
     }
 
     /**
