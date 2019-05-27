@@ -2,7 +2,6 @@
 
 namespace Tests\Feature\Admin\Api\V1;
 
-use App\Models\Country;
 use App\Models\User;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
@@ -27,7 +26,7 @@ class AbstractApiTestCase extends TestCase
     /**
      * Set up basic data
      */
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $this->apiUrl = config('app.url') . '/api/admin/v1/';

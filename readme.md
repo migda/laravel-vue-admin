@@ -25,7 +25,7 @@ Admin area (after successful login + auth as an admin): http://127.0.0.1:8000/ad
     * cmd: php artisan key:generate
     * cmd: php artisan migrate
     * browser: register user via register form
-    * db query: access to admin panel: UPDATE users SET role = 2 WHERE id = 1; #user.id == 1
+    * db query: access to admin panel: UPDATE users SET role_id = 2 WHERE id = 1; #users.id == 1
     
     - PHPUnit:
     * configure your .env file and db connection (TEST_)

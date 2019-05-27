@@ -13,7 +13,7 @@ class CountriesTest extends AbstractApiTestCase
     /**
      *
      */
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $this->endpoint = 'countries';
