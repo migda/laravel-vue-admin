@@ -28,7 +28,7 @@ export default {
         getItem() {
             return new Promise((resolve) => {
                     this.$http.get(this.getUrl()).then((response) => {
-                        this.item = response.data;
+                        this.item = response.data.data;
                         resolve();
                     }, () => {
                         this.$swal("Something went wrong. Try again!", '', "error");

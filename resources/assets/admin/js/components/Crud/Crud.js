@@ -47,11 +47,11 @@ export default {
         },
         setPagination(data) {
             this.pagination = {
-                currentPage: data.current_page,
-                from: data.from,
-                lastPage: data.last_page,
-                to: data.to,
-                total: data.total,
+                currentPage: data.meta.current_page,
+                from: data.meta.from,
+                lastPage: data.meta.last_page,
+                to: data.meta.to,
+                total: data.meta.total,
                 isLoading: false
             }
         },

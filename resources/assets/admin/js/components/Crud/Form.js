@@ -30,7 +30,7 @@ export default {
         createItem() {
             return new Promise((resolve) => {
                     this.$http.post(this.apiUrl + this.module, this.item).then((response) => {
-                        this.$swal("Created!", response.data.name, "success");
+                        this.$swal("Created!", response.data.data.name, "success");
                         this.$emit('created');
                         resolve();
                     }, (response) => {
