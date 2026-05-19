@@ -1,3 +1,4 @@
+# DEPRECATED
 # Laravel 5.8 boilerplate with Vue.js 2 + Vuex + VueRouter
 
 Role based (user / admin) Laravel boilerplate application with admin area written in Vue.js + Vue Router + REST API.
